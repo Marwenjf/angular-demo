@@ -6,5 +6,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'FirstApp';
+  items= ['item1','item2','item3','item4']
+  color = "red"
+  childColor = 'green'
+  addItemParent(item:string){
+     this.items.push(item)
+  }
+
 }

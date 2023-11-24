@@ -1,0 +1,52 @@
+<div class="container mb-5">
+  <nav class="p-2 my-2 border border-info" *ngIf="auth.hasRole('ADMIN')">
+   <button class="btn btn-outline-info" (click)="handleAddProduct()">
+    <i class="bi bi-plus"></i>Add Product
+   </button>
+  </nav>
+   <div class="card mt-2">
+     <div class="card-header">
+        <h2>Product List</h2>
+     </div>
+     <div class="card-body">
+        <table class="table">
+          <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Promotion</th>
+            </tr>
+          </thead>
+          <tbody>
+               <tr *ngFor="let p of products">
+                  <td>{{p.id}}</td>
+                  <td>{{p.name}}</td>
+                  <td>{{p.price}}</td>
+                  <td>
+                    <i *ngIf="p.promotion==true" 
+                    class="bi bi-cart-check-fill text-success"></i>
+                  </td>
+                  <td *ngIf="auth.hasRole('ADMIN')">
+                     <button (click)="handleSetPromotion(p)" class="btn" [ngClass]="p.promotion==true? 'btn-danger':'btn-success'">
+                        <span *ngIf="p.promotion==true">Promo Off</span>
+                        <span *ngIf="p.promotion==false">Promo On</span>
+                     </button>
+                  </td>
+                  <td *ngIf="auth.hasRole('ADMIN')">
+                    <button class="btn btn-secondary" 
+                    (click)="handleEditProduct(p)">
+                        <i class="bi bi-pencil-square"></i>
+                    </button>
+                  </td>
+                  <td *ngIf="auth.hasRole('ADMIN')">
+                    <button class="btn btn-danger" (click)="handleDeleteProduct(p)">
+                        <i class="bi bi-trash"></i>
+                    </button>
+                  </td>
+               </tr>
+          </tbody>
+        </table>
+     </div>
+   </div>
+</div>

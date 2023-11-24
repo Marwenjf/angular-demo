@@ -1,0 +1,32 @@
+<div class="container mt-5">
+   <div class="col-md-6 offset-md-3">
+    <div class="card">
+        <div class="card-header">
+            <h4 >Authentication</h4>
+        </div>
+        <div class="card-body">
+            <form [formGroup]="userForm" (ngSubmit)="handleLogin()">
+               <div class="mb-3">
+                <label class="form-label">Username</label>
+                <input type="text" class="form-control" formControlName="username">  
+               </div>
+               <small class="text-danger mb-2" *ngIf="(userForm.controls['username'].touched || submitted) 
+               && userForm.controls['username'].errors">
+                 {{ customError.getErrorMessage('User name',userForm.controls['username'].errors)}}
+               </small>
+               <div class="mb-3">
+                <label class="form-label">Password</label>
+                <input type="password" class="form-control" formControlName="password">
+                <small class="text-danger mb-2" *ngIf="(userForm.controls['password'].touched || submitted) 
+               && userForm.controls['password'].errors">
+                 {{ customError.getErrorMessage('Password',userForm.controls['password'].errors)}}
+               </small>
+               </div>
+               <div class="d-grid">
+                   <button class="btn btn-info text-light">S'authentifier</button>
+               </div>
+            </form>
+        </div>
+    </div>
+   </div>
+</div>

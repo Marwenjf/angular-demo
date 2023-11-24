@@ -1,0 +1,28 @@
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-md-6 offset-md-3">
+         <form #product="ngForm" >
+           <div class="mb-3">
+              <label class="form-label">Name</label>
+             <input type="text" class="form-control" 
+             #productName="ngModel" required name="name" ngModel>
+             <div *ngIf="productName.invalid && productName.dirty" class="text-danger">
+                Name is required
+             </div> 
+           </div>
+           <div class="mb-3">
+            <label class="form-label">Price</label>
+            <input type="number" class="form-control" name="price" ngModel>
+           </div>
+           <div class="mb-3">
+            <label class="form-label">Promotion</label>
+            <input type="checkbox" class="form-check-input" name="promotion" ngModel>
+           </div>
+           <div class="d-grid">
+               <button type="submit" (click)="submitForm(product.value)" 
+               [disabled]="product.invalid" class="btn btn-success">Add Product</button>
+           </div>
+         </form>
+        </div>
+    </div>
+</div>

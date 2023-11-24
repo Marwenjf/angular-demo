@@ -1,0 +1,29 @@
+<div [style.backgroundColor]="color">
+   From Parent
+</div>
+<h2>Name is: {{name}}</h2>
+<input type="text" [(ngModel)]="name" >
+<button [disabled]="counter==10" (click)="inc()">+</button>
+<button [disabled]="counter==0" (click)="dec()">-</button>
+<label >{{counter}}</label>
+
+
+<ul>
+    <li>Name:<app-info-name [name]="infos.name"></app-info-name></li>
+    <li>Email:{{infos.email}}</li>
+    <li>Phone:{{infos.phone}}</li>
+</ul>
+
+<input type="text" [(ngModel)]="comment.message">
+<button [disabled]="comment.message==''" (click)="addComment()">Add comment</button>
+<div *ngIf="comments.length>0;else noData">
+    <ul *ngFor="let c of comments" >
+        <li><app-comment-item [x]="c"></app-comment-item></li>
+      </ul>
+</div>
+
+<ng-template #noData>
+    <div class="error">
+        Not data Found
+    </div>
+</ng-template>

@@ -1,0 +1,37 @@
+<div class="container">
+    <div class="row mt-3">
+        <div class="col-md-6 offset-md-3">
+            {{ prodcutFormGroup.controls['price'].errors | json}}
+            <form [formGroup]="prodcutFormGroup" (ngSubmit)="handleAddProduct()">
+              <div class="mb-3">
+                <label class="form-label">Name</label>
+                <input type="text" class="form-control" 
+                formControlName="name">
+                <small class="text-danger" 
+                *ngIf="(prodcutFormGroup.controls['name'].touched || submitted) 
+                && prodcutFormGroup.controls['name'].errors">
+                    {{customError.getErrorMessage('Product name',prodcutFormGroup.controls['name'].errors)}}                              
+                </small>
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Price</label>
+                <input type="number" class="form-control" 
+                formControlName="price">
+                <small class="text-danger" 
+                *ngIf="(prodcutFormGroup.controls['price'].touched || submitted) 
+                && prodcutFormGroup.controls['price'].errors">
+                    {{customError.getErrorMessage('Product price',prodcutFormGroup.controls['price'].errors)}}                              
+                </small>
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Promotion</label>
+                <input type="checkbox" class="form-check" 
+                formControlName="promotion">
+              </div>
+              <div class="d-grid">
+                <button class="btn btn-success">Add Product</button>
+              </div>
+            </form>
+        </div>
+    </div>
+</div>
